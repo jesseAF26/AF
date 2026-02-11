@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRIXX™ Commercial Real Estate Indexes | Advanced Fundamentals</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-burgundy: #8B1A1A;
+            --dark-burgundy: #6B0F0F;
+            --charcoal: #2C2C2C;
+            --medium-gray: #5A5A5A;
+            --light-gray: #F5F5F5;
+            --gold: #B8860B;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background: var(--white);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            border-bottom: 1px solid #E0E0E0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-brixx {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-burgundy);
+            letter-spacing: 2px;
+        }
+
+        .logo-divider {
+            height: 30px;
+            width: 1px;
+            background: #CCC;
+        }
+
+        .logo-company {
+            font-size: 12px;
+            color: var(--medium-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-burgundy);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            background: linear-gradient(135deg, var(--dark-burgundy) 0%, var(--primary-burgundy) 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.85;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .section-gray {
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--medium-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Problem Section */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .problem-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .problem-card h3 {
+            font-size: 20px;
+            color: var(--primary-burgundy);
+            margin-bottom: 1rem;
+        }
+
+        .problem-card p {
+            color: var(--medium-gray);
+            line-height: 1.7;
+        }
+
+        /* Indexes Grid */
+        .indexes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .index-card {
+            background: var(--white);
+            border: 2px solid #E0E0E0;
+            border-radius: 8px;
+            padding: 2.5rem;
+            transition: all 0.3s;
+        }
+
+        .index-card:hover {
+            border-color: var(--primary-burgundy);
+            box-shadow: 0 4px 12px rgba(139, 26, 26, 0.15);
+        }
+
+        .index-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1.5rem;
+        }
+
+        .index-name {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--charcoal);
+        }
+
+        .index-symbol {
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-burgundy);
+            background: #FFF5F5;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+        }
+
+        .index-metric {
+            font-size: 14px;
+            color: var(--medium-gray);
+            margin-bottom: 1rem;
+        }
+
+        .index-description {
+            color: var(--medium-gray);
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        .composite-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #F8F8F8 0%, #FFFFFF 100%);
+            border: 2px solid var(--primary-burgundy);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-burgundy);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin: 0 auto 1.5rem;
+        }
+
+        .feature h3 {
+            font-size: 20px;
+            margin-bottom: 1rem;
+            color: var(--charcoal);
+        }
+
+        .feature p {
+            color: var(--medium-gray);
+            line-height: 1.7;
+        }
+
+        /* Methodology Section */
+        .methodology-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .methodology-text h3 {
+            font-size: 24px;
+            color: var(--primary-burgundy);
+            margin-bottom: 1.5rem;
+        }
+
+        .methodology-text p {
+            color: var(--medium-gray);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .methodology-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .methodology-list li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #E0E0E0;
+            color: var(--charcoal);
+            font-size: 15px;
+        }
+
+        .methodology-list li:last-child {
+            border-bottom: none;
+        }
+
+        .methodology-list li strong {
+            color: var(--primary-burgundy);
+            font-weight: 600;
+        }
+
+        /* Use Cases */
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .use-case {
+            background: var(--white);
+            padding: 2.5rem;
+            border-left: 4px solid var(--primary-burgundy);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .use-case h3 {
+            font-size: 22px;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .use-case p {
+            color: var(--medium-gray);
+            line-height: 1.7;
+        }
+
+        /* Research Section */
+        .research-highlight {
+            background: linear-gradient(135deg, var(--primary-burgundy) 0%, var(--dark-burgundy) 100%);
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 8px;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .research-highlight h3 {
+            font-size: 28px;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .research-highlight p {
+            font-size: 18px;
+            line-height: 1.8;
+            opacity: 0.95;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .research-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .research-stat {
+            text-align: center;
+        }
+
+        .research-stat-value {
+            font-size: 32px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .research-stat-label {
+            font-size: 14px;
+            opacity: 0.85;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--light-gray);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-section h2 {
+            font-size: 36px;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-section p {
+            font-size: 18px;
+            color: var(--medium-gray);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-burgundy);
+            color: var(--white);
+            padding: 1rem 3rem;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--dark-burgundy);
+            box-shadow: 0 4px 12px rgba(139, 26, 26, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 3rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 16px;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .footer-section p,
+        .footer-section li {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .problem-grid,
+            .indexes-grid,
+            .features-grid,
+            .methodology-content,
+            .use-cases-grid,
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .composite-card {
+                grid-column: 1;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-brixx">BRIXX™</div>
+                <div class="logo-divider"></div>
+                <div class="logo-company">Advanced Fundamentals</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#indexes">Indexes</a></li>
+                <li><a href="#methodology">Methodology</a></li>
+                <li><a href="#advantages">Advantages</a></li>
+                <li><a href="#use-cases">Use Cases</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Real-Time Commercial Real Estate Index Pricing</h1>
+            <div class="hero-subtitle">The First Market-Based CRE Indexes with Unlevered Returns</div>
+            <p class="hero-description">
+                BRIXX™ Commercial Real Estate Indexes overcome the limitations of appraisal lag, self-reporting, 
+                and leverage disparities to establish an accurate, real-time view of commercial real estate markets 
+                using publicly traded equity pricing and data.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">$600B+</span>
+                    <span class="stat-label">Property Values</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Market Indexes</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">Real-Time</span>
+                    <span class="stat-label">Pricing Updates</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="problem">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">The Problem with Traditional Real Estate Indexes</h2>
+                <p class="section-subtitle">
+                    While almost all asset classes have derivatives markets that dwarf the underlying markets, 
+                    the real estate derivatives market in the United States is almost nonexistent due to the lack 
+                    of a true, real-time valuation measurement index.
+                </p>
+            </div>
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>Appraisal Lag</h3>
+                    <p>Traditional indexes like NCREIF rely on appraisal data with significant time delays. Properties 
+                    aren't reappraised every period, creating stale valuations and artificial seasonality that dampens 
+                    actual market volatility.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>Leverage Volatility</h3>
+                    <p>Public market indexes like NAREIT and MSCI include indeterminate levels of corporate leverage, 
+                    making it impossible to isolate true property-level returns from capital structure effects.</p>
+                </div>
+                <div class="problem-card">
+                    <h3>Limited Transparency</h3>
+                    <p>Transaction-based indexes suffer from noise and lack of continuous pricing, while private 
+                    market data represents less than 10% of investable commercial properties in the U.S.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Indexes Section -->
+    <section id="indexes" class="section-gray">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">BRIXX Market Indexes</h2>
+                <p class="section-subtitle">
+                    Five indexes measuring real-time changes in commercial real estate valuations across 
+                    major property sectors, priced in commodity units for institutional transparency.
+                </p>
+            </div>
+            <div class="indexes-grid">
+                <div class="index-card">
+                    <div class="index-header">
+                        <div class="index-name">Residential</div>
+                        <div class="index-symbol">^BRIXR</div>
+                    </div>
+                    <div class="index-metric">Pricing: $/Unit (per 1,000)</div>
+                    <p class="index-description">
+                        Tracks multifamily residential properties including apartment communities and residential 
+                        REITs. Aggregates approximately $200 billion in property values across 15 leading 
+                        residential real estate companies.
+                    </p>
+                </div>
+
+                <div class="index-card">
+                    <div class="index-header">
+                        <div class="index-name">Retail</div>
+                        <div class="index-symbol">^BRIXT</div>
+                    </div>
+                    <div class="index-metric">Pricing: $/Square Foot</div>
+                    <p class="index-description">
+                        Measures retail commercial real estate including shopping centers, regional malls, 
+                        and retail properties. Covers approximately $225 billion in retail property values.
+                    </p>
+                </div>
+
+                <div class="index-card">
+                    <div class="index-header">
+                        <div class="index-name">Office</div>
+                        <div class="index-symbol">^BRIXO</div>
+                    </div>
+                    <div class="index-metric">Pricing: $/Square Foot</div>
+                    <p class="index-description">
+                        Tracks office properties across major U.S. markets. Represents approximately $130 billion 
+                        in office property valuations from leading office REITs and real estate companies.
+                    </p>
+                </div>
+
+                <div class="index-card">
+                    <div class="index-header">
+                        <div class="index-name">Hospitality</div>
+                        <div class="index-symbol">^BRIXH</div>
+                    </div>
+                    <div class="index-metric">Pricing: $/Key (per 1,000)</div>
+                    <p class="index-description">
+                        Measures hotel and lodging properties using per-room (key) pricing. Aggregates 
+                        approximately $85 billion in hospitality property values.
+                    </p>
+                </div>
+
+                <div class="index-card composite-card">
+                    <div class="index-header">
+                        <div class="index-name">Composite Index</div>
+                        <div class="index-symbol">^BRIXC</div>
+                    </div>
+                    <div class="index-metric">Pricing: Index Value (Base = 100)</div>
+                    <p class="index-description">
+                        Weighted composite of all four underlying sector indexes, representing the broader 
+                        commercial real estate market. Aggregates over $640 billion in total property values 
+                        across all sectors.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features -->
+    <section id="advantages">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Key Advantages</h2>
+                <p class="section-subtitle">
+                    BRIXX indexes provide institutional investors with the transparency, liquidity, 
+                    and precision required for sophisticated real estate investment strategies.
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Real-Time Pricing</h3>
+                    <p>Continuous updates based on live equity market data, eliminating appraisal lag 
+                    and providing immediate market transparency.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Unlevered Returns</h3>
+                    <p>Proprietary methodology removes corporate leverage effects to measure true 
+                    property-level returns, enabling accurate comparisons to private market benchmarks.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Leading Correlation</h3>
+                    <p>12-month leading correlation to private market real estate benchmarks, providing 
+                    early signals of market movements.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">💰</div>
+                    <h3>Commodity Pricing</h3>
+                    <p>Priced in intuitive units ($/sqft, $/unit, $/key) that align with how real estate 
+                    professionals evaluate properties.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🏢</div>
+                    <h3>Broad Coverage</h3>
+                    <p>Aggregates over $600 billion in property values across 60 publicly traded real 
+                    estate companies and four major property sectors.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔍</div>
+                    <h3>High Transparency</h3>
+                    <p>Based on publicly available SEC filings (10-Q, 10-K, 8-K) and real-time equity prices, 
+                    ensuring full auditability and transparency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology -->
+    <section id="methodology" class="section-gray">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Methodology</h2>
+                <p class="section-subtitle">
+                    A rigorous, transparent approach to measuring commercial real estate performance 
+                    using public market data and balance sheet adjustments.
+                </p>
+            </div>
+            <div class="methodology-content">
+                <div class="methodology-text">
+                    <h3>Market-Based Index Construction</h3>
+                    <p>
+                        BRIXX indexes are calculated using real-time equity prices from publicly traded 
+                        REITs and real estate companies, combined with detailed balance sheet data from 
+                        SEC filings to derive enterprise values and property-level metrics.
+                    </p>
+                    <p>
+                        Each index component is adjusted for leverage to calculate unlevered returns, 
+                        representing the true performance of the underlying real estate assets independent 
+                        of capital structure decisions.
+                    </p>
+                    <p>
+                        Components are selected based on minimum enterprise value thresholds ($1B+), 
+                        sector focus (85%+ revenue from target property type), and listing on U.S. 
+                        securities exchanges.
+                    </p>
+                </div>
+                <div>
+                    <ul class="methodology-list">
+                        <li><strong>Component Selection:</strong> Largest enterprise value companies within each sector meeting eligibility criteria</li>
+                        <li><strong>Weighting:</strong> Modified equal-weighting adjusted for leverage ratios and per-unit value changes</li>
+                        <li><strong>Rebalancing:</strong> Monthly weight resets; quarterly component reconstitution</li>
+                        <li><strong>Data Sources:</strong> Real-time equity prices, quarterly SEC filings (10-Q, 10-K), interim 8-K reports</li>
+                        <li><strong>Leverage Calculation:</strong> Enterprise Value = Market Cap + Total Liabilities + Minority Interest + Preferred Equity - Cash</li>
+                        <li><strong>Pricing Units:</strong> Enterprise value divided by property count (units, sqft, or keys)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Cases -->
+    <section id="use-cases">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Applications & Use Cases</h2>
+                <p class="section-subtitle">
+                    BRIXX indexes enable sophisticated investment strategies previously unavailable 
+                    in commercial real estate markets.
+                </p>
+            </div>
+            <div class="use-cases-grid">
+                <div class="use-case">
+                    <h3>Portfolio Hedging</h3>
+                    <p>
+                        Real estate investors can hedge portfolio exposure to specific property sectors 
+                        or overall market movements using real-time pricing, enabling dynamic risk management 
+                        unavailable with lagged traditional benchmarks.
+                    </p>
+                </div>
+                <div class="use-case">
+                    <h3>Derivatives Trading</h3>
+                    <p>
+                        The indexes provide the transparency and continuous pricing required for liquid 
+                        derivatives markets, supporting futures, options, and swaps on commercial real 
+                        estate performance.
+                    </p>
+                </div>
+                <div class="use-case">
+                    <h3>Benchmarking</h3>
+                    <p>
+                        Institutional investors can benchmark private real estate fund performance against 
+                        unlevered, real-time public market equivalents, with leading correlation providing 
+                        forward-looking insights.
+                    </p>
+                </div>
+                <div class="use-case">
+                    <h3>Portfolio Allocation</h3>
+                    <p>
+                        Separate property-level acquisition decisions from portfolio-level allocation choices, 
+                        enabling innovative strategies including 130/30 and portable alpha approaches in 
+                        real estate investing.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="section-gray">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Research Foundation</h2>
+                <p class="section-subtitle">
+                    BRIXX methodology is grounded in extensive academic research demonstrating the 
+                    fundamental relationship between public and private real estate markets.
+                </p>
+            </div>
+            
+            <div class="research-highlight">
+                <h3>Public and Private Markets Reflect the Same Real Estate Assets</h3>
+                <p>
+                    "Lagged REIT returns are highly predictive of private market returns... REITs serve as a 
+                    fundamental information transmission channel to private market returns... REIT returns simply 
+                    react to fundamental asset pricing information more quickly than private market returns given 
+                    their greater liquidity and transparency."
+                </p>
+                <p style="margin-top: 1.5rem; font-size: 14px; opacity: 0.8;">
+                    — David C. Ling and Andy Naranjo, Returns and Information Transmission Dynamics in Public 
+                    and Private Real Estate Markets (2015)
+                </p>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <h3 style="text-align: center; font-size: 24px; margin-bottom: 2rem; color: var(--charcoal);">
+                    Academic Support
+                </h3>
+                <div class="problem-grid">
+                    <div class="problem-card">
+                        <h3>Cointegration Evidence</h3>
+                        <p>
+                            Research shows evidence of cointegration between public and private real estate 
+                            markets across all four major U.S. sectors, with return volatilities that do not 
+                            differ significantly when adjusted for leverage.
+                        </p>
+                        <p style="margin-top: 1rem; font-size: 13px; font-style: italic;">
+                            Martin Hoesli, Elias Oikarinen (2012-2013)
+                        </p>
+                    </div>
+                    <div class="problem-card">
+                        <h3>Fundamental Volatility</h3>
+                        <p>
+                            "Real estate asset market pricing seems to share the characteristic of securities 
+                            markets that much of the volatility and cyclical price movements are driven more by 
+                            capital market forces than by changes in underlying operating cash flows."
+                        </p>
+                        <p style="margin-top: 1rem; font-size: 13px; font-style: italic;">
+                            David Geltner (2014)
+                        </p>
+                    </div>
+                    <div class="problem-card">
+                        <h3>Derivatives Potential</h3>
+                        <p>
+                            "Derivatives on US private equity real estate have the potential to reshape direct 
+                            real estate investment activity. A fully functioning derivatives market would allow 
+                            investors to separate property-level decisions from portfolio-level allocation choices."
+                        </p>
+                        <p style="margin-top: 1rem; font-size: 13px; font-style: italic;">
+                            Asieh Mansour, Sandy Naylor (2007)
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Context -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Market Context</h2>
+                <p class="section-subtitle">
+                    Commercial real estate represents a massive asset class with growing institutional 
+                    participation but limited derivatives infrastructure.
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">$</div>
+                    <h3>$16 Trillion Market</h3>
+                    <p>
+                        U.S. commercial real estate represents approximately $16 trillion in total value, 
+                        comparable to the Treasury bond market, with roughly $8 trillion in institutional-quality 
+                        assets.
+                    </p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Global Leadership</h3>
+                    <p>
+                        U.S. real estate transaction volume exceeds $550 billion annually, representing nearly 
+                        half of global total and more institutional assets than the next three markets combined.
+                    </p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📈</div>
+                    <h3>GICS Reclassification</h3>
+                    <p>
+                        The 2016 creation of Real Estate as a separate GICS sector has led to significantly 
+                        reduced correlation between publicly traded real estate and the broader equity market.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="cta-section">
+        <div class="cta-content">
+            <h2>Access Institutional-Grade Real Estate Indexes</h2>
+            <p>
+                BRIXX indexes are available to qualified institutional investors, hedge funds, 
+                and derivatives market participants. Contact us to learn more about index access, 
+                licensing, and derivative product development.
+            </p>
+            <a href="mailto:info@advancedfundamentals.com" class="cta-button">Contact Us</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Advanced Fundamentals</h4>
+                <p>
+                    Advanced Fundamentals LLC is the index provider for BRIXX™ Commercial Real Estate Indexes. 
+                    We deliver institutional-grade, real-time commercial real estate benchmarks enabling 
+                    transparent derivatives markets and sophisticated investment strategies.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Indexes</h4>
+                <ul>
+                    <li><a href="#indexes">BRIXX Residential (^BRIXR)</a></li>
+                    <li><a href="#indexes">BRIXX Retail (^BRIXT)</a></li>
+                    <li><a href="#indexes">BRIXX Office (^BRIXO)</a></li>
+                    <li><a href="#indexes">BRIXX Hospitality (^BRIXH)</a></li>
+                    <li><a href="#indexes">BRIXX Composite (^BRIXC)</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#methodology">Methodology</a></li>
+                    <li><a href="#research">Research</a></li>
+                    <li><a href="#use-cases">Use Cases</a></li>
+                    <li><a href="mailto:info@advancedfundamentals.com">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Advanced Fundamentals LLC. All rights reserved. BRIXX™ is a trademark of Advanced Fundamentals LLC.</p>
+            <p style="margin-top: 1rem; font-size: 11px;">
+                The information provided is for informational purposes only and should not be construed as investment advice. 
+                Past performance is not indicative of future results. Options involve risk and are not suitable for all investors.
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
