@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metro Indexes | Advanced Fundamentals</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-forest: #2B5F44;
+            --dark-forest: #1B4030;
+            --charcoal: #2C2C2C;
+            --medium-gray: #5A5A5A;
+            --light-gray: #F5F5F5;
+            --gold: #B8860B;
+            --white: #FFFFFF;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background: var(--white);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            border-bottom: 1px solid #E0E0E0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo-metro {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-forest);
+            letter-spacing: 2px;
+        }
+
+        .logo-divider {
+            height: 30px;
+            width: 1px;
+            background: #CCC;
+        }
+
+        .logo-company {
+            font-size: 12px;
+            color: var(--medium-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-forest);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            background: linear-gradient(135deg, var(--dark-forest) 0%, var(--primary-forest) 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        /* Metro Grid */
+        .metros {
+            padding: 5rem 2rem;
+            background: var(--light-gray);
+        }
+
+        .metros-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--medium-gray);
+        }
+
+        .metro-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .metro-card {
+            background: var(--white);
+            padding: 2.5rem;
+            border-left: 4px solid var(--primary-forest);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+
+        .metro-card:hover {
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            transform: translateY(-2px);
+        }
+
+        .metro-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+
+        .metro-name {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-forest);
+        }
+
+        .metro-star {
+            font-size: 24px;
+            opacity: 0.3;
+        }
+
+        .metro-stat {
+            margin-bottom: 1rem;
+        }
+
+        .metro-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--medium-gray);
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .metro-value {
+            font-size: 18px;
+            color: var(--charcoal);
+            font-weight: 600;
+        }
+
+        .metro-description {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--light-gray);
+            font-size: 15px;
+            color: var(--medium-gray);
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-forest);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--dark-forest);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 3rem 2rem 1.5rem;
+            border-top: 4px solid var(--primary-forest);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 1rem;
+            color: var(--primary-forest);
+        }
+
+        .footer-section p,
+        .footer-section li {
+            font-size: 14px;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-forest);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 20px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .metro-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-metro">METRO</span>
+                <span class="logo-divider"></span>
+                <span class="logo-company">Advanced Fundamentals</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="brixx.html">BRIXX</a></li>
+                <li><a href="metro.html" class="active">Metro</a></li>
+                <li><a href="housing.html">Housing</a></li>
+                <li><a href="mailto:info@advancedfundamentals.com">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Metro Indexes</h1>
+            <p class="hero-subtitle">Metropolitan Economic Performance</p>
+            <p class="hero-description">
+                Measuring the economic performance of major metropolitan areas through publicly 
+                traded companies headquartered in each region. Ten distinct indexes providing 
+                precise exposure to local economic dynamics.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">10</span>
+                    <span class="stat-label">Metro Indexes</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">25</span>
+                    <span class="stat-label">Companies Each</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">$11T+</span>
+                    <span class="stat-label">Combined Market Cap</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Metro Grid -->
+    <section class="metros">
+        <div class="metros-container">
+            <div class="section-header">
+                <h2>10 Metropolitan Area Indexes</h2>
+                <p>Sample data shown for illustrative purposes</p>
+            </div>
+
+            <div class="metro-grid">
+                <!-- New York -->
+                <div class="metro-card">
+                    <div class="metro-header">
+                        <div class="metro-name">New York</div>
+                        <div class="metro-star">⭐</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Constituents</div>
+                        <div class="metro-value">25 Companies</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Total Market Cap</div>
+                        <div class="metro-value">$2.2 Trillion</div>
+                    </div>
+                    <div class="metro-description">
+                        Largest metro index by market capitalization. Includes major financial services, 
+                        media, and technology companies headquartered in the New York metropolitan area.
+                    </div>
+                </div>
+
+                <!-- San Francisco -->
+                <div class="metro-card">
+                    <div class="metro-header">
+                        <div class="metro-name">San Francisco</div>
+                        <div class="metro-star">⭐</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Constituents</div>
+                        <div class="metro-value">25 Companies</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Total Market Cap</div>
+                        <div class="metro-value">$3.5 Trillion</div>
+                    </div>
+                    <div class="metro-description">
+                        Highest concentration of technology and innovation companies. Tracks leading 
+                        tech, software, and biotech firms in Silicon Valley and Bay Area.
+                    </div>
+                </div>
+
+                <!-- Chicago -->
+                <div class="metro-card">
+                    <div class="metro-header">
+                        <div class="metro-name">Chicago</div>
+                        <div class="metro-star">⭐</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Constituents</div>
+                        <div class="metro-value">25 Companies</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Total Market Cap</div>
+                        <div class="metro-value">$1.1 Trillion</div>
+                    </div>
+                    <div class="metro-description">
+                        Diversified industrial and financial center. Index includes manufacturing, 
+                        aerospace, food production, and commodities trading companies.
+                    </div>
+                </div>
+
+                <!-- Seattle -->
+                <div class="metro-card">
+                    <div class="metro-header">
+                        <div class="metro-name">Seattle</div>
+                        <div class="metro-star">⭐</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Constituents</div>
+                        <div class="metro-value">25 Companies</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Total Market Cap</div>
+                        <div class="metro-value">$1.6 Trillion</div>
+                    </div>
+                    <div class="metro-description">
+                        Pacific Northwest technology and aerospace hub. Tracks major cloud computing, 
+                        e-commerce, aerospace, and retail companies.
+                    </div>
+                </div>
+
+                <!-- Los Angeles -->
+                <div class="metro-card">
+                    <div class="metro-header">
+                        <div class="metro-name">Los Angeles</div>
+                        <div class="metro-star">⭐</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Constituents</div>
+                        <div class="metro-value">25 Companies</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Total Market Cap</div>
+                        <div class="metro-value">$451 Billion</div>
+                    </div>
+                    <div class="metro-description">
+                        Entertainment, aerospace, and technology center. Index weighted toward media, 
+                        entertainment, and consumer companies.
+                    </div>
+                </div>
+
+                <!-- Boston -->
+                <div class="metro-card">
+                    <div class="metro-header">
+                        <div class="metro-name">Boston</div>
+                        <div class="metro-star">⭐</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Constituents</div>
+                        <div class="metro-value">25 Companies</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Total Market Cap</div>
+                        <div class="metro-value">$762 Billion</div>
+                    </div>
+                    <div class="metro-description">
+                        Biotech and life sciences leader. Heavy concentration in biotechnology, 
+                        pharmaceuticals, healthcare, and financial services.
+                    </div>
+                </div>
+
+                <!-- Dallas -->
+                <div class="metro-card">
+                    <div class="metro-header">
+                        <div class="metro-name">Dallas</div>
+                        <div class="metro-star">⭐</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Constituents</div>
+                        <div class="metro-value">25 Companies</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Total Market Cap</div>
+                        <div class="metro-value">$982 Billion</div>
+                    </div>
+                    <div class="metro-description">
+                        Energy and telecommunications hub. Significant representation from oil & gas, 
+                        telecommunications, and retail sectors.
+                    </div>
+                </div>
+
+                <!-- Atlanta -->
+                <div class="metro-card">
+                    <div class="metro-header">
+                        <div class="metro-name">Atlanta</div>
+                        <div class="metro-star">⭐</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Constituents</div>
+                        <div class="metro-value">25 Companies</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Total Market Cap</div>
+                        <div class="metro-value">$837 Billion</div>
+                    </div>
+                    <div class="metro-description">
+                        Southern business capital. Index includes transportation, logistics, media, 
+                        and consumer goods companies.
+                    </div>
+                </div>
+
+                <!-- Houston -->
+                <div class="metro-card">
+                    <div class="metro-header">
+                        <div class="metro-name">Houston</div>
+                        <div class="metro-star">⭐</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Constituents</div>
+                        <div class="metro-value">25 Companies</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Total Market Cap</div>
+                        <div class="metro-value">$654 Billion</div>
+                    </div>
+                    <div class="metro-description">
+                        Energy capital of America. Dominated by oil & gas exploration, refining, 
+                        oilfield services, and energy infrastructure companies.
+                    </div>
+                </div>
+
+                <!-- Denver -->
+                <div class="metro-card">
+                    <div class="metro-header">
+                        <div class="metro-name">Denver</div>
+                        <div class="metro-star">⭐</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Constituents</div>
+                        <div class="metro-value">25 Companies</div>
+                    </div>
+                    <div class="metro-stat">
+                        <div class="metro-label">Total Market Cap</div>
+                        <div class="metro-value">$260 Billion</div>
+                    </div>
+                    <div class="metro-description">
+                        Rocky Mountain business center. Mix of telecommunications, cable, energy, 
+                        and regional banking companies.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Institutional Access</h2>
+            <p>
+                Metro Indexes are available to qualified institutional clients. For current index methodology, 
+                constituent lists, and licensing information, contact us today.
+            </p>
+            <a href="mailto:info@advancedfundamentals.com" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Advanced Fundamentals</h3>
+                <p>
+                    Institutional-grade financial indexes enabling transparent derivatives markets and 
+                    sophisticated investment strategies.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Indexes</h3>
+                <ul>
+                    <li><a href="brixx.html">BRIXX Indexes</a></li>
+                    <li><a href="metro.html">Metro Indexes</a></li>
+                    <li><a href="housing.html">Housing Rankings</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="mailto:info@advancedfundamentals.com">info@advancedfundamentals.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Advanced Fundamentals LLC. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
