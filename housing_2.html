@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Housing Rankings | Advanced Fundamentals</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-navy: #1B4F72;
+            --dark-navy: #0D2E47;
+            --charcoal: #2C2C2C;
+            --medium-gray: #5A5A5A;
+            --light-gray: #F5F5F5;
+            --gold: #B8860B;
+            --white: #FFFFFF;
+            --green: #2E7D32;
+            --red: #C62828;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background: var(--white);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            border-bottom: 1px solid #E0E0E0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+        }
+
+        .logo-housing {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-navy);
+            letter-spacing: 2px;
+        }
+
+        .logo-divider {
+            height: 30px;
+            width: 1px;
+            background: #CCC;
+        }
+
+        .logo-company {
+            font-size: 12px;
+            color: var(--medium-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--charcoal);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-navy);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            background: linear-gradient(135deg, var(--dark-navy) 0%, var(--primary-navy) 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        /* Methodology Section */
+        .methodology {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .methodology-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--medium-gray);
+        }
+
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .method-card {
+            background: var(--light-gray);
+            padding: 2.5rem;
+            text-align: center;
+            border-top: 4px solid var(--primary-navy);
+        }
+
+        .method-icon {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--primary-navy);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1.5rem;
+        }
+
+        .method-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 1rem;
+        }
+
+        .method-card p {
+            font-size: 15px;
+            color: var(--medium-gray);
+            line-height: 1.7;
+        }
+
+        .formula-box {
+            background: var(--primary-navy);
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 8px;
+            margin-top: 3rem;
+        }
+
+        .formula-box h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .formula-text {
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .formula-box p {
+            font-size: 16px;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        /* Rankings Section */
+        .rankings {
+            padding: 5rem 2rem;
+            background: var(--light-gray);
+        }
+
+        .rankings-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .rankings-table {
+            background: var(--white);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: var(--charcoal);
+            color: var(--white);
+        }
+
+        th {
+            padding: 1.5rem 1rem;
+            text-align: left;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        th:last-child {
+            text-align: center;
+        }
+
+        td {
+            padding: 1.5rem 1rem;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        tbody tr:hover {
+            background: var(--light-gray);
+        }
+
+        .rank-cell {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-navy);
+            width: 80px;
+        }
+
+        .metro-cell {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--charcoal);
+        }
+
+        .data-cell {
+            font-size: 16px;
+            color: var(--medium-gray);
+            font-family: 'Courier New', monospace;
+        }
+
+        .sharpe-cell {
+            font-weight: 700;
+            text-align: center;
+            color: var(--charcoal);
+            font-size: 18px;
+        }
+
+        .positive {
+            color: var(--green);
+        }
+
+        .negative {
+            color: var(--red);
+        }
+
+        /* CTA Section */
+        .cta {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--primary-navy);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            background: var(--dark-navy);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: var(--white);
+            padding: 3rem 2rem 1.5rem;
+            border-top: 4px solid var(--primary-navy);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 18px;
+            margin-bottom: 1rem;
+            color: var(--primary-navy);
+        }
+
+        .footer-section p,
+        .footer-section li {
+            font-size: 14px;
+            line-height: 1.8;
+            opacity: 0.8;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-navy);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            font-size: 13px;
+            opacity: 0.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .hero-subtitle {
+                font-size: 20px;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            .methodology-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            table {
+                font-size: 14px;
+            }
+
+            th, td {
+                padding: 1rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <span class="logo-housing">HOUSING</span>
+                <span class="logo-divider"></span>
+                <span class="logo-company">Advanced Fundamentals</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="brixx.html">BRIXX</a></li>
+                <li><a href="metro.html">Metro</a></li>
+                <li><a href="housing.html" class="active">Housing</a></li>
+                <li><a href="mailto:info@advancedfundamentals.com">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Housing Rankings</h1>
+            <p class="hero-subtitle">Risk-Adjusted Residential Real Estate</p>
+            <p class="hero-description">
+                Risk-adjusted residential real estate rankings for the 40 largest U.S. metropolitan 
+                areas. Combining price appreciation with historical volatility using Sharpe ratio 
+                methodology to identify superior investment opportunities.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">40</span>
+                    <span class="stat-label">Metro Markets</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">20 Years</span>
+                    <span class="stat-label">Historical Data</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">Quarterly</span>
+                    <span class="stat-label">Updates</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Methodology Section -->
+    <section class="methodology">
+        <div class="methodology-container">
+            <div class="section-header">
+                <h2>Sharpe Ratio Methodology</h2>
+                <p>Measuring risk-adjusted returns across U.S. residential markets</p>
+            </div>
+
+            <div class="methodology-grid">
+                <div class="method-card">
+                    <div class="method-icon">// Risk</div>
+                    <h3>Volatility</h3>
+                    <p>
+                        Risk measured by calculating the volatility of each MSA's average home price using 
+                        standard deviation of price changes over 20 years of historical data.
+                    </p>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-icon">// Return</div>
+                    <h3>Appreciation</h3>
+                    <p>
+                        Returns measured using the Zillow Home Value Index (ZHVI), which includes single-family 
+                        residences, condos, and co-ops for comprehensive market coverage.
+                    </p>
+                </div>
+
+                <div class="method-card">
+                    <div class="method-icon">// Ranking</div>
+                    <h3>Risk-Adjusted</h3>
+                    <p>
+                        Sharpe ratio combines risk and return, showing which markets deliver superior returns 
+                        relative to their volatility—the true measure of investment quality.
+                    </p>
+                </div>
+            </div>
+
+            <div class="formula-box">
+                <h3>Sharpe Ratio Formula</h3>
+                <div class="formula-text">
+                    S(x) = (Rx − Rf) / StdDev(x)
+                </div>
+                <p>
+                    Where Rx is the annual return of the metropolitan area, Rf is the risk-free rate 
+                    (10-year US Treasury), and StdDev(x) is the historical standard deviation of returns. 
+                    Higher Sharpe ratios indicate better risk-adjusted performance.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rankings Section -->
+    <section class="rankings">
+        <div class="rankings-container">
+            <div class="section-header">
+                <h2>Top 10 Markets</h2>
+                <p>Sample data from Q1 2019 shown for illustrative purposes</p>
+            </div>
+
+            <div class="rankings-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Metro Area</th>
+                            <th>Annual Appreciation</th>
+                            <th>Std Dev (20yr)</th>
+                            <th>Sharpe Ratio</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="rank-cell">1</td>
+                            <td class="metro-cell">Indianapolis, IN</td>
+                            <td class="data-cell positive">12.46%</td>
+                            <td class="data-cell">4.12%</td>
+                            <td class="sharpe-cell">2.42</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">2</td>
+                            <td class="metro-cell">Cincinnati, OH</td>
+                            <td class="data-cell positive">8.37%</td>
+                            <td class="data-cell">3.56%</td>
+                            <td class="sharpe-cell">1.65</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">3</td>
+                            <td class="metro-cell">Kansas City, MO</td>
+                            <td class="data-cell positive">8.89%</td>
+                            <td class="data-cell">3.98%</td>
+                            <td class="sharpe-cell">1.60</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">4</td>
+                            <td class="metro-cell">Charlotte, NC</td>
+                            <td class="data-cell positive">9.10%</td>
+                            <td class="data-cell">4.52%</td>
+                            <td class="sharpe-cell">1.46</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">5</td>
+                            <td class="metro-cell">Dallas-Fort Worth, TX</td>
+                            <td class="data-cell positive">8.74%</td>
+                            <td class="data-cell">4.68%</td>
+                            <td class="sharpe-cell">1.33</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">6</td>
+                            <td class="metro-cell">Columbus, OH</td>
+                            <td class="data-cell positive">7.90%</td>
+                            <td class="data-cell">4.07%</td>
+                            <td class="sharpe-cell">1.33</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">7</td>
+                            <td class="metro-cell">Atlanta, GA</td>
+                            <td class="data-cell positive">10.39%</td>
+                            <td class="data-cell">7.44%</td>
+                            <td class="sharpe-cell">1.06</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">8</td>
+                            <td class="metro-cell">San Antonio, TX</td>
+                            <td class="data-cell positive">6.17%</td>
+                            <td class="data-cell">3.62%</td>
+                            <td class="sharpe-cell">1.01</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">9</td>
+                            <td class="metro-cell">Austin, TX</td>
+                            <td class="data-cell positive">6.26%</td>
+                            <td class="data-cell">4.11%</td>
+                            <td class="sharpe-cell">0.92</td>
+                        </tr>
+                        <tr>
+                            <td class="rank-cell">10</td>
+                            <td class="metro-cell">Cleveland, OH</td>
+                            <td class="data-cell positive">6.06%</td>
+                            <td class="data-cell">3.95%</td>
+                            <td class="sharpe-cell">0.90</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Data & Methodology</h2>
+            <p>
+                Rankings shown are based on historical data and provided for illustrative purposes only. 
+                For current rankings, detailed methodology, and complete market analysis covering all 40 
+                metropolitan areas, contact us today.
+            </p>
+            <a href="mailto:info@advancedfundamentals.com" class="cta-button">Get In Touch</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Advanced Fundamentals</h3>
+                <p>
+                    Institutional-grade financial indexes enabling transparent derivatives markets and 
+                    sophisticated investment strategies.
+                </p>
+            </div>
+            <div class="footer-section">
+                <h3>Indexes</h3>
+                <ul>
+                    <li><a href="brixx.html">BRIXX Indexes</a></li>
+                    <li><a href="metro.html">Metro Indexes</a></li>
+                    <li><a href="housing.html">Housing Rankings</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="mailto:info@advancedfundamentals.com">info@advancedfundamentals.com</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Advanced Fundamentals LLC. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
