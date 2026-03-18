@@ -91,7 +91,8 @@
             transition: color 0.3s;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover,
+        .nav-links a.active {
             color: var(--primary-burgundy);
         }
 
@@ -572,18 +573,17 @@
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-            <div class="logo">
+            <a href="index.html" class="logo" style="text-decoration: none; cursor: pointer;">
                 <div class="logo-brixx">BRIXX™</div>
                 <div class="logo-divider"></div>
                 <div class="logo-company">Advanced Fundamentals</div>
-            </div>
+            </a>
             <ul class="nav-links">
-                <li><a href="#indexes">Indexes</a></li>
-                <li><a href="#methodology">Methodology</a></li>
-                <li><a href="#advantages">Advantages</a></li>
-                <li><a href="#use-cases">Use Cases</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="brixx.html" class="active">BRIXX</a></li>
+                <li><a href="metro.html">Metro</a></li>
+                <li><a href="housing.html">Housing</a></li>
+                <li><a href="mailto:info@advancedfundamentals.com">Contact</a></li>
             </ul>
         </div>
     </nav>
